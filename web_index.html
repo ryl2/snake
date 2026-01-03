@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Snake - Remote</title>
+  <style>
+    body{background:#111;color:#eee;font-family:Arial;text-align:center;padding:20px}
+    #game{border:4px solid #333}
+    #hud{margin-top:8px}
+    button{padding:6px 10px;margin:6px}
+  </style>
+  <script>
+    async function sendKey(k){
+      await fetch('/input', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key:k})});
+    }
+    window.addEventListener('keydown', e=>{
+      const map = {ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down','a':'left','d':'right','w':'up','s':'down','r':'restart'};
+      const k = map[e.key];
+      if(k) sendKey(k);
+    });
+
+    async function updateFrame(){
+      const img = document.getElementById('frame');
+      img.src = '/frame?t=' + Date.now();
+    }
+
+    setInterval(updateFrame, 100); // 10 fps polling
+  </script>
+</head>
+<body>
+  <h1>Snake (from Python server)</h1>
+  <img id="frame" src="/frame" width="600" height="400" alt="frame">
+  <div id="hud">
+    <button onclick="sendKey('restart')">Restart</button>
+    <p>Use Arrow keys or WASD to control.</p>
+  </div>
+</body>
+</html>

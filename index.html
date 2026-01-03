@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Snake — Browser</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="top-bar">
+      <h1 class="title">Snake</h1>
+      <div class="hud" id="hud">
+        <div class="score" id="score">Score: 0</div>
+        <div class="high" id="high">High: 0 (<span id="highName">—</span>)</div>
+      </div>
+    </header>
+
+    <main class="game-area">
+      <div class="canvas-wrap">
+        <canvas id="game" width="600" height="400" aria-label="Snake game"></canvas>
+      </div>
+    </main>
+
+    <div class="controls">Keys: Arrow / WASD — R restart — T theme — Swipe to play (mobile)</div>
+
+    <div id="startOverlay" class="overlay">
+      <div class="overlay-card">
+        <h2>Play Snake</h2>
+        <p>Use Arrow keys or WASD. On mobile swipe to move.</p>
+        <div style="margin:10px 0">
+          <input id="nameInput" placeholder="Enter your name" maxlength="16" style="width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--text)">
+        </div>
+        <div class="btns">
+          <button id="playBtn" class="btn primary">Play</button>
+          <button id="themeBtn" class="btn">Theme</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="gameOverOverlay" class="overlay hidden">
+      <div class="overlay-card">
+        <h2 id="overTitle">Game Over</h2>
+        <p id="overScore">Score: 0</p>
+        <div class="btns">
+          <button id="restartBtn" class="btn primary">Restart</button>
+          <button id="menuBtn" class="btn">Menu</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="small">Ito nalang laruin mo kaysa feelings ng tao!!!</p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
